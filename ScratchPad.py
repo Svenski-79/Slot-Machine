@@ -1,7 +1,7 @@
-import sys
 import time as tim
 import shutil
-import keyboard as key
+import random
+import keyboard as key 
 
 # Initialize
 consoleWidth, consoleheight = shutil.get_terminal_size()
@@ -11,18 +11,28 @@ Lsymbols = len(symbols)
 
 def update(text):  # whatever text is given gets displayed in center of terminal
     global consoleWidth
-    x = text.center(consoleWidth)
     print("\r", end="")
-    print(x, end="")
+    print(text, end="")
     tim.sleep(.1)
 
-def stringBuild():
-    d
+def stringBuild(str1="START", str2="START", str3="START"):
+    STR = str1.center(10) + str2.center(10) + str3.center(10)
+    return(STR.center(consoleWidth))
 
-key.wait('enter')
-for i in range(10):
-    update(symbols[i%Lsymbols])
-    
+def gameOn() -> str:
+    str = ["START", "START", "START"]
+    for i in range(3):
+        while True:
+            choice = random.choice
+            str1 = symbols(choice) if choice < Lsymbols else "Empty"
+            update(stringBuild(str[0], str[2], str[3]))
+    return str
+
+def GameON():
+    for r in int(input("Rounds : ")):
+        gameOn()
+
+GameON()
 # sys.stdout.write('hello')
 # sys.stdout.flush()
 # for _ in range(5):
