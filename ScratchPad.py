@@ -16,7 +16,8 @@ def update(text):  # whatever text is given gets displayed in center of terminal
     print(x, end="")
     tim.sleep(.1)
 
-def stringBuild()
+def stringBuild():
+    d
 
 key.wait('enter')
 for i in range(10):

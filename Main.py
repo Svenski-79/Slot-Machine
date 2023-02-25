@@ -15,7 +15,6 @@ symbols = ["cherry", "diamond", "heart", "banana", "chappal", "coffee", "tree"]
 empty = "X"
 imageReel = []
 
-
 def gameDisp(text):  # whatever text is given gets displayed in center of terminal
     global consoleWidth
     x = text.center(consoleWidth)
