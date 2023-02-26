@@ -8,6 +8,7 @@ import time as tim
 import random
 import keyboard as key
 import shutil
+import threading 
 
 consoleWidth, consoleheight = shutil.get_terminal_size() #calculates terminal height and width 
 
@@ -17,16 +18,14 @@ def gameDisp(text):     #whatever text is given gets displayed in center of term
   x = text.center(consoleWidth)
   print(x, sep=" ", end="\t")
 
-
-# userName = input("what is your name")
-# print(f"Hello there {userName}")
-# tim.sleep(0.7)
-# print("By the way my name is Luke Emia")
-# tim.sleep(0.7)
-# print("you may call me luke")
-
-symbols = ["cherry", "diamond", "heart", "banana", "chappal", "coffee", "tree"]
-empty = "X"
+symbols = {"cherry":4,
+           "diamond":5,
+           "heart":3,
+           "banana":2,
+           "chappal":1,
+           "coffee":2,
+           "tree":1,
+           "X":0}
 imageReel = []
 
 
@@ -41,19 +40,12 @@ def denominator(factor, money): #gambling term just google
 
 
 def slot() -> str:    #generates 1 symbol for the possible 3 slots 
-  global empty
   global symbols
-  slots = 0
-  probability = random.randint(0, 10)
-
-  if probability < 6:
-    slots = random.choice(symbols)
-  else:
-    slots = empty
-  return str(slots)
+  slots = random.choice(symbols,weights=(42,10,42,30,35,28,33,40))
+  return slots
 
 
-def cursorSpin()->None:    #A spinning cursor animation,it spits None when animation is over ,need to fix that
+def cursorSpin(time)->None:    #A spinning cursor animation,it spits None when animation is over ,need to fix that
 
   def spinning_cursor():
     while True:
@@ -61,22 +53,24 @@ def cursorSpin()->None:    #A spinning cursor animation,it spits None when anima
         yield cursor
 
   spinner = spinning_cursor()
-  for _ in range(50):
-    sys.stdout.write(next(spinner))
-    sys.stdout.flush()
-    tim.sleep(0.1)
-    sys.stdout.write('\b')
-    if 
-
-
-def startMachine() -> None:     #displays the symbol       
-  gameDisp("--------------------------")
+  for i in range (time):
+    for _ in range(4):
+      sys.stdout.write(next(spinner))
+      sys.stdout.flush()
+      tim.sleep(0.1)
+      sys.stdout.write('\b')
   
-  gameDisp(displayReel)
+
+
+def startMachine() -> None:    #displays the symbol       
   gameDisp("--------------------------")
+  reel1 = slot()
+  reel2=slot()
+  reel3 = slot()
+  
 
-
-startMachine()
+  slot()
+  gameDisp("--------------------------")
 
 def startGame():    #starts game on enter
   while True:
